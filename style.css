@@ -1,0 +1,188 @@
+:root {
+  --black: #151d28;
+  --white: #ebede9;
+  --grey: #a8b5b2;
+}
+
+@font-face {
+    font-family: "PixelSans";
+    src: url("fonts/PixelifySans-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, p {
+    font-family: "PixelSans";
+    color: var(--black);
+}
+
+#modal-aboutme {
+    display:none; 
+    position:fixed; 
+    top:0; 
+    left:0;
+    width:100%; 
+    height:100%; 
+    background:#88888800;  
+    z-index: 9999; 
+    justify-content:center; 
+    align-items:center; 
+    flex-direction:column;
+}
+
+.window {
+    position: relative; 
+    background:var(--white); 
+    border: 3px solid var(--black); 
+    width: 85%; 
+    max-width: 1000px; 
+    text-align: center; 
+    box-shadow: 3px 3px 0 rgba(0,0,0);
+}
+
+.window-bar {
+    background-color: var(--white);
+    height: 51px;
+    max-width: 100%;
+    padding: 0px 6px;
+    border-bottom: 3px solid var(--black);
+}
+
+.window-bar-background {
+    background-image: url("media/head.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    image-rendering: pixelated;
+    height: 100%;
+    max-width: 100%;
+}
+
+.cross {
+    position: absolute;
+    z-index: 10;
+    top: 0px;
+    height: 51px;
+    image-rendering: pixelated;
+    left: 4%;
+    cursor: pointer;
+}
+
+.window-bar-title {
+    font-family: "PixelSans";
+    position: absolute;
+    top: 0px;
+    margin: 0px;
+    width: calc(100% - 12px);
+    display: flex;
+    justify-content: center;
+}
+
+.window-bar-title h2 {
+    padding: 0px 6px;
+    margin: 0px;
+    background-color: var(--white);
+    height: 51px;
+    font-size: 44px;
+}
+
+.window-content {
+    padding: 18px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: auto 1fr;
+}
+
+.window-content > img {
+    height: 240px;
+    width: 240px;
+    image-rendering: pixelated;
+}
+
+.window-content p {
+    font-size: 21px;
+    margin: 0px;
+    text-align: start;
+}
+
+.window-box {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    place-items: center;
+    vertical-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-expanded {
+    grid-column: span 2;
+    margin-bottom: 12px;
+}
+
+.window-content h3 {
+    text-align: start;
+    margin: 0px;
+    font-size: 34px;
+    margin-bottom: 6px;
+}
+
+.box-expanded div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.box-expanded img {
+    image-rendering: pixelated;
+    height: 96px;
+    width: 96px;
+}
+
+.box-expanded button{
+    background:var(--white); 
+    cursor: pointer;
+    border: 3px solid var(--black); 
+    width: 85%; 
+    max-width: 240px; 
+    text-align: center; 
+    box-shadow: 3px 3px 0 rgba(0,0,0);
+    height: 42px;
+    font-family: "PixelSans";
+    font-size: 24px;
+}
+
+.box-expanded button:active{
+    background-color: var(--grey);
+}
+
+#modal-back {
+    display:none; 
+    position:fixed; 
+    top:0; 
+    left:0;
+    width:100%; 
+    height:100%; 
+    z-index: 9999; 
+    justify-content:center; 
+    align-items:center; 
+    flex-direction:column;
+}
+
+#modal-back button {
+    position: absolute; 
+    bottom: 60px;
+    background:var(--white); 
+    cursor: pointer;
+    border: 3px solid var(--black); 
+    width: 85%; 
+    max-width: 300px; 
+    text-align: center; 
+    box-shadow: 3px 3px 0 rgba(0,0,0);
+    height: 51px;
+    font-family: "PixelSans";
+    font-size: 35px;
+}
+
+#modal-back button:active {
+    background-color: var(--grey);
+}

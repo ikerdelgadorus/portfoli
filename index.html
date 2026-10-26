@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ca">
+    <head>
+        <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portafolis 3D de Dia</title>
+        <link rel="icon" type="image/png" href="media/Logo_Cartdige.png">
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="modal-video"
+            style="display:none; position:fixed; top:0; left:0;
+            width:100%; height:100%; background:rgba(15,32,45,0.75);
+            backdrop-filter:blur(5px); z-index:9999;
+            justify-content:center; align-items:center;
+            flex-direction:column;">
+
+
+            <div
+                style="position:relative; background:#2B5B75;
+                border:3px solid #E2BD63; padding:25px;
+                border-radius:16px; width:85%; max-width:700px;
+                text-align:center;
+                box-shadow:0 12px 30px rgba(0,0,0,0.4);">
+
+
+                <button onclick="tancarVideo()"
+                    style="position:absolute; top:10px; right:15px;
+                    background:none; border:none; color:#F0E6D2;
+                    font-size:28px; cursor:pointer; font-weight:bold;">
+                    &times;
+                </button>
+
+
+                <h2
+                    style="color:#E2BD63; margin-top:0;
+                    font-family:'Segoe UI',sans-serif;
+                    text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+                    font-size:28px;">
+                    My Work
+                </h2>
+
+
+                <video id="meuVideo" width="100%" controls
+                    style="border-radius:8px; max-height:400px;
+                    background:#183342; border:1px solid #4FC3F7;">
+
+
+                    <source src="demo.mp4" type="video/mp4">
+                    El teu navegador no suporta vídeos HTML5.
+                </video>
+
+
+                <div style="margin-top:18px;">
+                    <a href="https://usuari/projectes.html"
+                        target="_blank"
+                        style="display:inline-block; padding:12px 28px;
+                        background-color:#C04331; color:#FFFFFF;
+                        text-decoration:none; border-radius:8px;
+                        font-weight:bold; font-family:sans-serif;
+                        border:2px solid #E2BD63;
+                        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+                        transition:all 0.3s;"
+                        onmouseover="this.style.backgroundColor='#A33323'; this.style.transform='scale(1.03)'"
+                        onmouseout="this.style.backgroundColor='#C04331'; this.style.transform='scale(1)'">
+                        Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="modal-aboutme" onclick="tancarAboutme()">
+            <div class="window" onclick="nothing(event)">
+                <div class="window-bar">
+                    <div class="window-bar-background"></div>
+                    <img class="cross" src="media/cross_off.png" onclick="tancarAboutme()" onmouseenter="changeImg(this, 'media/cross_on.png')" onmouseout="changeImg(this, 'media/cross_off.png')" />
+                    <div class="window-bar-title">
+                        <h2>About me</h2>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <img src="media/icon.png" />
+                    <div class="window-box">
+                        <p>Hi, I'm <b>Iker Delgado Rus</b>, a software developer who works on everything from websites to mobile and desktop applications.</p>
+                        <p>As a developer, I love the programming side of software development, where I can make the most of my skills in languages such as <b>Java</b>, <b>JavaScript</b>, and <b>C#</b>. Beyond programming, I also enjoy exploring other areas of development, such as 2D and 3D design.</p>
+                    </div>
+                    <div class="box-expanded">
+                        <h3>Tools</h3>
+                        <div>
+                            <img src="media/c.png" />
+                            <img src="media/java.png" />
+                            <img src="media/javascript.png" />
+                            <img src="media/python.png" />
+                            <img src="media/vue.png" />
+                            <img src="media/mongodb.png" />
+                            <img src="media/unity.png" />
+                        </div>
+                    </div>
+                    <div class="box-expanded">
+                        <button>CV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-back">
+            <button>Back</button>
+        </div>
+        <a-scene renderer="colorManagement: true;" shadow="type: pcf" background="color: #4c8e9e">  
+
+            <!-- Lights -->
+            <a-entity light="type: ambient; color: #FFFFFF; intensity: 0.4"></a-entity>
+            <a-entity light="type: directional; color: #FFFACD; intensity: 0.8; castShadow: true; shadowMapWidth: 1024; shadowMapHeight: 1024" position="-3 6 4"></a-entity>
+            <a-entity light="type: point; color: #FFFFFF; intensity: 0.1; castShadow: true; shadowMapWidth: 1024; shadowMapHeight: 1024; angle: 10" position="-1.76313 1.7399 -3.06711"></a-entity>
+
+            <!-- Floor and Wall -->
+            <a-box color="#8e5c39" material="" geometry="" scale="9.653 0.056 5.764" position="0 -0.23786 -2.838" shadow="cast: false"></a-box>
+            <a-box color="#4c8e9e" material="" geometry="" scale="40 20 0.05" position="0 2.533 -5.749" shadow="cast: false"></a-box>
+
+            <!-- Macintosh Sistem --> 
+            <a-gltf-model class="interactiu" revelar-retol="target: #projects" focus-target="position: -1.45 1.75 -2.5; rotation: 0 25.722 0"" rotation="0 25.722 0" position="-3.34494 -0.13988 -4.35387" scale="0.05 0.05 0.05" visible="" gltf-model="models/Mac2.glb" shadow="cast: true; receive: true"></a-gltf-model>
+            <a-gltf-model rotation="0 25.722 0" position="-2.4021 1.255 -2.88116" scale="0.05 0.05 0.05" visible="" gltf-model="models/Screen_Main.glb" shadow="receive: false"></a-gltf-model>
+
+
+            <a-gltf-model rotation="0 98.26684552729722 0" position="1.80651 -0.19 -2.20244" scale="0.05 0.05 0.05" visible="" gltf-model="models/MouseMac.glb" shadow=""></a-gltf-model>
+            <a-gltf-model rotation="0 -0.39000000000000007 0" position="-1.508 -0.143 -2.81031" scale="0.05 0.05 0.05" visible="" gltf-model="models/KeyboardMac.glb" shadow=""></a-gltf-model>
+            <a-gltf-model rotation="85.857 -94.599 -94.488" position="2.14 3.692 -5.69789" scale="0.2 0.2 0.2" visible="" gltf-model="models/Poster.glb" shadow="receive: false"></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #github" obrir-link="url: https://github.com/ikerdelgadorus" rotation="0 -30.938002063679058 0" position="2.682 -0.19 -4.677" scale="0.05 0.05 0.05" visible="" gltf-model="models/ManekiNeko.glb" animation-mixer="clip: *" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 35.813872900242366 0" position="0.7045 -0.19 -4.55392" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_Z.glb" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="7.685655863884863 -20.779460356009565 12.270464140521712" position="-0.09522 -0.12869 -4.457" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_M.glb" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="14.568024898996311 4.385418963931321 0" position="0.2879 -0.09387 -4.21366" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_K.glb" shadow=""></a-gltf-model>            
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 18.725979618260695 0" position="0.08172 -0.19 -4.50441" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_T.glb" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 67.31337360314964 -15.917340506529401" position="0.20813 -0.09008 -4.65955" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_P.glb" shadow=""></a-gltf-model>
+            <a-gltf-model id="console" gltf-model="models/Console.glb" position="3.696 -0.19 -3.62" rotation="0 -71.074 0" scale="0.05 0.05 0.05" animation-mixer="clip: Close; loop: once; clampWhenFinished: true; repetitions: 1" shadow=""></a-gltf-model>
+
+            <!-- Collider Console -->
+            <a-box class="interactiu" revelar-retol="target: #contact" enviar-mail="email:iker.delgado.rus@gmail.com; subject:Contacte des del Portafolis" position="3.62096 -0.10498 -2.98552" geometry="width: 1.2; height: 0.25; depth: 0.6" material="shader: flat; transparent: true; opacity: 0" hover-open-close="target: #console" scale="" rotation="0 -71.074 0"></a-box>
+            
+            <!-- Clouds -->
+            <a-gltf-model id="github" scale="0.05 0.05 0.05" rotation="0 -30.938000000000002 0" position="2.716 1.19365 -4.173" visible="false" gltf-model="models/GitHub.glb" animation-mixer="" ></a-gltf-model>
+            <a-gltf-model id="about" scale="0.05 0.05 0.05" rotation="" position="0.39341 0.297 -4.347" visible="false" gltf-model="models/AboutMe.glb" animation-mixer=""></a-gltf-model>
+            <a-gltf-model id="contact" scale="0.05 0.05 0.05" rotation="0 -71.074 0" position="3.68661 0.564 -3.01986" visible="false" gltf-model="models/Contact.glb" animation-mixer=""></a-gltf-model>
+            <a-gltf-model id="projects" scale="0.05 0.05 0.05" rotation="0 25.722 0" position="-1.877 2.7346 -3.365" visible="false" gltf-model="models/Projects.glb" animation-mixer=""></a-gltf-model>
+
+            <a-entity id="rig" focus-rig position="0 0 0">
+                <a-camera cursor="rayOrigin: mouse" wasd-controls-enabled="false" camera-limitada="angle:10; distancia:1" raycaster="objects: .interactiu"></a-camera>
+            </a-entity>
+        </a-scene>
+    </body>
+    <script src="script.js"></script>
+</html>
