@@ -1,3 +1,19 @@
+let keyboard_count = 0;
+const screen_view = [
+	"BlockScreen_0.glb",
+	"BlockScreen_1.glb",
+	"BlockScreen_2.glb",
+	"BlockScreen_3.glb",
+	"BlockScreen_4.glb",
+	"BlockScreen_5.glb",
+	"BlockScreen_6.glb",
+	"BlockScreen_7.glb",
+	"BlockScreen_8.glb",
+	"BlockScreen_9.glb",
+	"BlockScreen_10.glb",
+	"BlockScreen_11.glb",
+];
+
 AFRAME.registerComponent('revelar-retol', {
 	schema: {
 		target: { type: 'selector' },  
@@ -21,7 +37,7 @@ AFRAME.registerComponent('revelar-retol', {
 		const orig = this.escalaOriginal;
 		const f = this.data.factor;
 		//el.setAttribute('scale', `${orig.x * 0.9} ${orig.y * 1.1} ${orig.z * 0.9}`);
-		el.pause();
+		//el.pause();
 		});
 
 
@@ -34,7 +50,7 @@ AFRAME.registerComponent('revelar-retol', {
 		// 2. Restablim l'escala original
 		const orig = this.escalaOriginal;
 		el.setAttribute('scale', `${orig.x} ${orig.y} ${orig.z}`);
-		el.play();
+		//el.play();
     	});
   	}
 });
@@ -272,7 +288,8 @@ AFRAME.registerComponent('focus-rig', {
     this.rotated = false;
     this.cam = this.el.querySelector('[camera]');
     this.btn = document.querySelector('#modal-back');
-    this.btn.querySelector("button").addEventListener('click', () => this.goHome());
+	this.screen = document.getElementById('screen');
+    this.btn.querySelector("button").addEventListener('click', () => {this.goHome(); new Audio('media/sound/click.mp3').play();});
   },
 
   goTo: function (pos, rot) {
@@ -289,6 +306,8 @@ AFRAME.registerComponent('focus-rig', {
     }
     this.focused = true;
 	setTimeout(() => { this.btn.style.display = 'flex'; }, 1500)
+	this.screen.setAttribute("gltf-model", `models/Screen_Main.glb`);
+	keyboard_count = 0;
 
     var c = this.cam.object3D.position;
     this.animate('position', { x: pos.x - c.x, y: pos.y - c.y, z: pos.z - c.z }, 'move');
@@ -300,6 +319,7 @@ AFRAME.registerComponent('focus-rig', {
   },
 
   goHome: function () {
+
     this.focused = false;
     this.btn.style.display = 'none';
     this.animate('position', this.home.pos, 'move');
@@ -335,18 +355,67 @@ AFRAME.registerComponent('focus-target', {
   }
 });
 
+AFRAME.registerComponent('keyboard-click', {
+  init: function () {
+    this.el.addEventListener('click', () => {
+      const screen = document.getElementById('screen');
+	  keyboard_count += 1;
+	  screen.setAttribute("gltf-model", `models/${screen_view[(keyboard_count % screen_view.length)]}`);
+    });
+  }
+});
+
 function changeImg(obj, img) {
 	obj.src = img;
 }
 
-function tancarAboutme() {
-	const modal = document.getElementById('modal-aboutme');
+function obrirModal(modalname) {
+	const modal = document.getElementById(modalname);
+
+	if (modal) {
+		modal.style.display = 'block';
+		new Audio('media/sound/click.mp3').play();
+	}
+}
+
+function tancarModal(modalname) {
+	const modal = document.getElementById(modalname);
 
 	if (modal) {
 		modal.style.display = 'none';
+		new Audio('media/sound/click.mp3').play();
 	}
 }
 
 function nothing(event) {
 	event.stopPropagation();
+}
+
+function clickSound() {
+	new Audio('media/sound/click.mp3').play();
+}
+
+function activeSound() {
+    var ctx = THREE.AudioContext.getContext();
+
+  function arrancar() {
+    // Arranca los sonidos que deben sonar solos (autoplay / ambiente)
+    document.querySelectorAll('[sound]').forEach(function (el) {
+		var s = el.components.sound;
+		if (s && s.data.autoplay) {
+			s.stopSound();   // reinicia por si ya estaba "sonando" en silencio
+			s.playSound();   // si el audio aún no ha cargado, empezará al terminar de cargar
+		}
+		});
+	}
+
+	if (ctx.state === 'suspended') {
+		ctx.resume().then(arrancar, arrancar);
+	} else {
+		arrancar();
+	}
+	const modal = document.getElementById('start');
+	if (modal) {
+		modal.style.display = 'none';
+	}
 }

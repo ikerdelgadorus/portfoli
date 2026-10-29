@@ -16,71 +16,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="modal-video"
-            style="display:none; position:fixed; top:0; left:0;
-            width:100%; height:100%; background:rgba(15,32,45,0.75);
-            backdrop-filter:blur(5px); z-index:9999;
-            justify-content:center; align-items:center;
-            flex-direction:column;">
-
-
-            <div
-                style="position:relative; background:#2B5B75;
-                border:3px solid #E2BD63; padding:25px;
-                border-radius:16px; width:85%; max-width:700px;
-                text-align:center;
-                box-shadow:0 12px 30px rgba(0,0,0,0.4);">
-
-
-                <button onclick="tancarVideo()"
-                    style="position:absolute; top:10px; right:15px;
-                    background:none; border:none; color:#F0E6D2;
-                    font-size:28px; cursor:pointer; font-weight:bold;">
-                    &times;
-                </button>
-
-
-                <h2
-                    style="color:#E2BD63; margin-top:0;
-                    font-family:'Segoe UI',sans-serif;
-                    text-shadow:1px 1px 2px rgba(0,0,0,0.5);
-                    font-size:28px;">
-                    My Work
-                </h2>
-
-
-                <video id="meuVideo" width="100%" controls
-                    style="border-radius:8px; max-height:400px;
-                    background:#183342; border:1px solid #4FC3F7;">
-
-
-                    <source src="demo.mp4" type="video/mp4">
-                    El teu navegador no suporta vídeos HTML5.
-                </video>
-
-
-                <div style="margin-top:18px;">
-                    <a href="https://usuari/projectes.html"
-                        target="_blank"
-                        style="display:inline-block; padding:12px 28px;
-                        background-color:#C04331; color:#FFFFFF;
-                        text-decoration:none; border-radius:8px;
-                        font-weight:bold; font-family:sans-serif;
-                        border:2px solid #E2BD63;
-                        box-shadow:0 4px 10px rgba(0,0,0,0.3);
-                        transition:all 0.3s;"
-                        onmouseover="this.style.backgroundColor='#A33323'; this.style.transform='scale(1.03)'"
-                        onmouseout="this.style.backgroundColor='#C04331'; this.style.transform='scale(1)'">
-                        Projects
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="modal-aboutme" onclick="tancarAboutme()">
+        <div id="modal-aboutme" onclick="tancarModal('modal-aboutme')">
             <div class="window" onclick="nothing(event)">
                 <div class="window-bar">
                     <div class="window-bar-background"></div>
-                    <img class="cross" src="media/cross_off.png" onclick="tancarAboutme()" onmouseenter="changeImg(this, 'media/cross_on.png')" onmouseout="changeImg(this, 'media/cross_off.png')" />
+                    <img class="cross" src="media/cross_off.png" onclick="tancarModal('modal-aboutme')" onmouseenter="changeImg(this, 'media/cross_on.png')" onmouseout="changeImg(this, 'media/cross_off.png')" />
                     <div class="window-bar-title">
                         <h2>About me</h2>
                     </div>
@@ -104,15 +44,82 @@
                         </div>
                     </div>
                     <div class="box-expanded">
-                        <button>CV</button>
+                        <a href="media/CV_IkerDelgado.pdf" download="CV_IkerDelgado.pdf">
+                            <button onclick="clickSound()">CV</button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
         <div id="modal-back">
+            <div class="desktop">
+                <div class="icon" onclick="obrirModal('modal-zombie')">
+                    <img src="media/icon_joczombie.png" />
+                    <h3>Joc Zombie</h3>
+                </div>
+                <div class="icon" onclick="obrirModal('modal-caronte')">
+                    <img src="media/icon_joczombie.png" />
+                    <h3>Caronte</h3>
+                </div>
+            </div>
+            <div class="works-modals">
+                <div id="modal-zombie" class="window">
+                    <div class="window-bar">
+                        <div class="window-bar-background"></div>
+                        <img class="cross" src="media/cross_off.png" onclick="tancarModal('modal-zombie')" onmouseenter="changeImg(this, 'media/cross_on.png')" onmouseout="changeImg(this, 'media/cross_off.png')" />
+                        <div class="window-bar-title">
+                            <h2>Joc Zombie</h2>
+                        </div>
+                    </div>
+                    <div class="window-work">
+                        <div class="work-content">
+                            <video id="meuVideo" autoplay muted loop>
+                                <source src="media/video/JocZombie_IkerDelgado.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="window-box">
+                            <p><b>About:</b><br>This is a small project to understand how use Unity and how it works.</p>
+                            <p><b>Tools used:</b><br>Unity</p>
+                            <p><b>Development time:</b><br>02/10/2026 to 23/10/26</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="modal-caronte" class="window">
+                    <div class="window-bar">
+                        <div class="window-bar-background"></div>
+                        <img class="cross" src="media/cross_off.png" onclick="tancarModal('modal-caronte')" onmouseenter="changeImg(this, 'media/cross_on.png')" onmouseout="changeImg(this, 'media/cross_off.png')" />
+                        <div class="window-bar-title">
+                            <h2>Caronte</h2>
+                        </div>
+                    </div>
+                    <div class="window-work">
+                        <div class="work-content">
+                            <video id="meuVideo" autoplay muted loop>
+                                <source src="media/video/JocZombie_IkerDelgado.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="window-box">
+                            <p><b>About:</b><br>This is a small project to understand how use Unity and how it works.</p>
+                            <p><b>Tools used:</b><br>Unity</p>
+                            <p><b>Development time:</b><br>02/10/2026 to 23/10/26</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
             <button>Back</button>
         </div>
+        <div id="start">
+            <button onclick="activeSound()">Start</button>
+        </div>
         <a-scene renderer="colorManagement: true;" shadow="type: pcf" background="color: #4c8e9e">  
+            <a-assets>
+                <audio id="s-clic" src="media/sound/hover.mp3"  preload="auto"></audio>
+                <audio id="s-keycap" src="media/sound/keycap.mp3"  preload="auto"></audio>
+                <audio id="s-openc" src="media/sound/open_console.mp3"auto"></audio>
+            </a-assets>
 
             <!-- Lights -->
             <a-entity light="type: ambient; color: #FFFFFF; intensity: 0.4"></a-entity>
@@ -121,22 +128,22 @@
 
             <!-- Floor and Wall -->
             <a-box color="#8e5c39" material="" geometry="" scale="9.653 0.056 5.764" position="0 -0.23786 -2.838" shadow="cast: false"></a-box>
-            <a-box color="#4c8e9e" material="" geometry="" scale="40 20 0.05" position="0 2.533 -5.749" shadow="cast: false"></a-box>
+            <a-box color="#4c8e9e" material="" geometry="" scale="80 40 0.05" position="0 2.533 -5.749" shadow="cast: false"></a-box>
 
             <!-- Macintosh Sistem --> 
             <a-gltf-model class="interactiu" revelar-retol="target: #projects" focus-target="position: -1.45 1.75 -2.5; rotation: 0 25.722 0"" rotation="0 25.722 0" position="-3.34494 -0.13988 -4.35387" scale="0.05 0.05 0.05" visible="" gltf-model="models/Mac2.glb" shadow="cast: true; receive: true"></a-gltf-model>
-            <a-gltf-model rotation="0 25.722 0" position="-2.4021 1.255 -2.88116" scale="0.05 0.05 0.05" visible="" gltf-model="models/Screen_Main.glb" shadow="receive: false"></a-gltf-model>
-
+            <a-gltf-model id="screen" rotation="0 25.722 0" position="-2.4021 1.255 -2.88116" scale="0.05 0.05 0.05" visible="" gltf-model="models/BlockScreen_0.glb" shadow="receive: false"></a-gltf-model>
+            <a-box color="#151d28" material="" geometry="" rotation="0 25.722 0" scale="1.479 1.254 1" position="-1.98728 1.749 -3.61728"></a-box>
 
             <a-gltf-model rotation="0 98.26684552729722 0" position="1.80651 -0.19 -2.20244" scale="0.05 0.05 0.05" visible="" gltf-model="models/MouseMac.glb" shadow=""></a-gltf-model>
-            <a-gltf-model rotation="0 -0.39000000000000007 0" position="-1.508 -0.143 -2.81031" scale="0.05 0.05 0.05" visible="" gltf-model="models/KeyboardMac.glb" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" keyboard-click rotation="0 -0.39000000000000007 0" position="-1.508 -0.143 -2.81031" scale="0.05 0.05 0.05" visible="" gltf-model="models/KeyboardMac.glb" shadow="" sound="src: #s-keycap; on: click; positional: false; volume: 0.5"></a-gltf-model>
             <a-gltf-model rotation="85.857 -94.599 -94.488" position="2.14 3.692 -5.69789" scale="0.2 0.2 0.2" visible="" gltf-model="models/Poster.glb" shadow="receive: false"></a-gltf-model>
-            <a-gltf-model class="interactiu" revelar-retol="target: #github" obrir-link="url: https://github.com/ikerdelgadorus" rotation="0 -30.938002063679058 0" position="2.682 -0.19 -4.677" scale="0.05 0.05 0.05" visible="" gltf-model="models/ManekiNeko.glb" animation-mixer="clip: *" shadow=""></a-gltf-model>
-            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 35.813872900242366 0" position="0.7045 -0.19 -4.55392" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_Z.glb" shadow=""></a-gltf-model>
-            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="7.685655863884863 -20.779460356009565 12.270464140521712" position="-0.09522 -0.12869 -4.457" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_M.glb" shadow=""></a-gltf-model>
-            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="14.568024898996311 4.385418963931321 0" position="0.2879 -0.09387 -4.21366" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_K.glb" shadow=""></a-gltf-model>            
-            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 18.725979618260695 0" position="0.08172 -0.19 -4.50441" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_T.glb" shadow=""></a-gltf-model>
-            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 67.31337360314964 -15.917340506529401" position="0.20813 -0.09008 -4.65955" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_P.glb" shadow=""></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #github" obrir-link="url: https://github.com/ikerdelgadorus" rotation="0 -30.938002063679058 0" position="2.682 -0.19 -4.677" scale="0.05 0.05 0.05" visible="" gltf-model="models/ManekiNeko.glb" animation-mixer="clip: *" shadow="" sound="src: #s-clic"></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 35.813872900242366 0" position="0.7045 -0.19 -4.55392" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_Z.glb" shadow="" ssound="src: url(media/sound/hover.mp3); on: mouseenter; poolSize: 3; positional: false"></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="7.685655863884863 -20.779460356009565 12.270464140521712" position="-0.09522 -0.12869 -4.457" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_M.glb" shadow="" sound="src: url(media/sound/hover.mp3); on: mouseenter; poolSize: 3; positional: false"></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="14.568024898996311 4.385418963931321 0" position="0.2879 -0.09387 -4.21366" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_K.glb" shadow="" sound="src: url(media/sound/hover.mp3); on: mouseenter; poolSize: 3; positional: false"></a-gltf-model>            
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 18.725979618260695 0" position="0.08172 -0.19 -4.50441" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_T.glb" shadow="" sound="src: url(media/sound/hover.mp3); on: mouseenter; poolSize: 3; positional: false"></a-gltf-model>
+            <a-gltf-model class="interactiu" revelar-retol="target: #about" obrir-modal-aboutme rotation="0 67.31337360314964 -15.917340506529401" position="0.20813 -0.09008 -4.65955" scale="0.05 0.05 0.05" visible="" gltf-model="models/Cartridge_P.glb" shadow="" sound="src: url(media/sound/hover.mp3); on: mouseenter; poolSize: 3; positional: false"></a-gltf-model>
             <a-gltf-model id="console" gltf-model="models/Console.glb" position="3.696 -0.19 -3.62" rotation="0 -71.074 0" scale="0.05 0.05 0.05" animation-mixer="clip: Close; loop: once; clampWhenFinished: true; repetitions: 1" shadow=""></a-gltf-model>
 
             <!-- Collider Console -->
