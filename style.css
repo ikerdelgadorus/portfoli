@@ -296,6 +296,10 @@ h1, h2, h3, h4, p, b {
     border: 3px solid var(--black); 
 }
 
+.window-work > .window-box {
+    padding-bottom: 8px;
+}
+
 .window-work b {
     font-size: 24px;
     margin: 0px;

@@ -214,11 +214,13 @@ AFRAME.registerComponent('hover-open-close', {
         this.onEnter = () => {
             console.log('ENTER: Open');
             this.playClip(this.data.openClip);
+			new Audio('media/sound/open_console.mp3').play();
         };
 
         this.onLeave = () => {
             console.log('LEAVE: Close');
             this.playClip(this.data.closeClip);
+			setTimeout( () => new Audio('media/sound/close_console.mp3').play(), 580);
         };
 
         this.el.addEventListener('mouseenter', this.onEnter);
@@ -359,8 +361,17 @@ AFRAME.registerComponent('keyboard-click', {
   init: function () {
     this.el.addEventListener('click', () => {
       const screen = document.getElementById('screen');
-	  keyboard_count += 1;
-	  screen.setAttribute("gltf-model", `models/${screen_view[(keyboard_count % screen_view.length)]}`);
+      keyboard_count += 1;
+      screen.setAttribute("gltf-model", `models/${screen_view[(keyboard_count % screen_view.length)]}`);
+
+      const mixer = this.el.components['animation-mixer'];
+      if (mixer && mixer.activeActions) {
+        this.el.setAttribute('animation-mixer', 'timeScale', 1);
+        mixer.activeActions.forEach(function (action) {
+          action.reset();   
+          action.play();   
+        });
+      }
     });
   }
 });
@@ -370,6 +381,10 @@ function changeImg(obj, img) {
 }
 
 function obrirModal(modalname) {
+
+	document.getElementById('modal-zombie').style.display = 'none';
+	document.getElementById('modal-caronte').style.display = 'none';
+
 	const modal = document.getElementById(modalname);
 
 	if (modal) {
